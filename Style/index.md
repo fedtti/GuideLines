@@ -1,4 +1,4 @@
-##### CSS/SCSS
+## CSS/SCSS
 
 Partiamo con una piccola introduzione su cosa siano il CSS e l'SCSS.
 
@@ -19,7 +19,7 @@ Indubbiamente utilizzare l'SCSS porta dei notevoli vantaggi:
 
   
 
-###### Folder structure
+##### Folder structure
 
 Di seguito alcune regole su come strutturare la cartella degli stili all'interno di un progetto.
 
@@ -89,3 +89,92 @@ styles/
 N.B.: La regola del 7-1 può essere applicata anche solo in parte. Se non abbiamo bisogno di alcune cartelle (es.: themes) eviteremo di crearla.
 
 Una piccola modifica a questa struttura sta nel creare altri file a livello di ogni singola cartella dove importare tutti gli stili contenuti. Ad esempio, la cartella layout potrà avere un file _layout.scss che farà da 'main' per il layout. Poi nel file, main.scss importeremo _layout.scss.
+
+
+##### Best practices
+* **Mantenere ogni stile su una sua linea** Quando si dichiara una classe in un file css e questa contiene diversi attirbuti, predisporre una nuova riga per ogni attributo.
+
+Sbagliato:
+```css
+.class { display: none; position: relative; }
+```
+
+Corretto:
+```css
+.class {
+	display: none;
+	position: relative;
+}
+```
+
+* **Usare un reset** se si inizia un progetto da zero e non si stanno utilizzando librerie di UI, è buona norma avere un file di reset per eliminare tutte le incosistenze dei vari browser. Ci son diversi file di reset che si possono trovare online.
+
+* **Combinare gli elementi** se alcune proprietà sono comuni a più elementi è meglio raggrupparli anzichè ripetere il codice;
+
+Sbagliato
+```css
+.class_1 {
+	color: black;
+}
+
+.class_2 {
+	color: black;
+}
+```
+
+Corretto:
+```css
+.class_1, .class_2 {
+	color: black;
+}
+```
+
+* **Prima l'HTML poi il CSS** quando si crea una pagina è meglio prima crearne la struttura completa e poi aggiungere lo stile, in questo modo si avrà una visone completa di ciò che è necessario;
+
+* **Usare classi di utility** può capitare che molti elementi a volte abbiano bisogno di uno stile comune. Ad esempio avere diversi elementi con un margine di 12px. In questo caso, la soluzione migliore sarebbe avere una classe di utils, margin-12 che setta il margine a 12px e che può essere riutilizzata da qualsiasi elemento essendo essa generica.
+
+**Warning** se abbiamo una classe che fa un float di un elemento a sinistra creeremo una classe 'float-left'. Se però, per ragioni di design, l'elemento dovrà avere invece un float a destra, dovremo andare a cambiare l'HTML per cambiare l'aspetto della pagina e questo non va bene.
+
+Ricordiamo:
+*__HTML è per il markup e il contenuto, CSS è per l'aspetto__*
+
+Quindi, in questo caso, andremmo a mischiare la logica.
+
+* **Usare shorthand** a volte c'è bisogno di settare dei margini di versi per le quattro direzioni (top, right, bottom, left), in questo caso, anzichè creare 4 proprietà per ogni direzione, è bene usare gli shorthand che il CSS offre.
+
+Sbagliato:
+```css
+.class {
+	margin-top: 2px;
+	margin-right: 10px;
+	margin-bottom: 15px;
+	margin-left: 20px
+}
+```
+
+Corretto:
+```css
+.class {
+	margin: 2px 10px 15px 20px;
+}
+```
+
+* **Attributi in ordine alfabetico** quando all'interno di una classe CSS vengono dichiarati i diversi attributi, è bene mantenerli in ordine alfabetico, per evitare di creare confusione in chi dovrà poi leggere in futuro la classeSbagliato:
+```css
+.class {
+	margin: 10px;
+	display: flex;
+	border: 1px solid red;
+}
+```
+
+Corretto:
+```css
+.class {
+	border: 1px solid red;
+	display: flex;
+	margin: 10px;
+}
+```
+
+* **Use rem, em instead of px**
