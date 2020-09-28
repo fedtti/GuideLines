@@ -57,11 +57,11 @@ Utilizzare quindi i commenti solo ove necesario, come ad esempio per demarcare l
 * **EVITARE L'UTILIZZO DEL TAG BR** Molte volte si finisce con l'utilizzare il tag br per separare il contenuto di una pagina. Se la stesa cosa può essere raggiunta tramite l'utilizzo di regole CSS, allora usare quelle.
 * **OGNI ELEMENTO SU UNA RIGA** Quando si creano elementi, porli sempre su una nuova riga, evitare quindi di avere più elementi sulla stella linea.
 
-Scorretto:
+Bad:
 ```html
     <table><tr><th>Hello World!</th></tr></table>
 ```
-Corretto:
+Good:
 ```html
     <table>
         <tr>

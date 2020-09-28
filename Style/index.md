@@ -92,12 +92,12 @@ Una piccola modifica a questa struttura sta nel creare altri file a livello di o
 ##### Best practices
 * **Mantenere ogni stile su una sua linea** Quando si dichiara una classe in un file css e questa contiene diversi attirbuti, predisporre una nuova riga per ogni attributo.
 
-Sbagliato:
+Bad:
 ```css
 .class { display: none; position: relative; }
 ```
 
-Corretto:
+Good:
 ```css
 .class {
 	display: none;
@@ -109,7 +109,7 @@ Corretto:
 
 * **Combinare gli elementi** se alcune proprietà sono comuni a più elementi è meglio raggrupparli anzichè ripetere il codice;
 
-Sbagliato
+Bad
 ```css
 .class_1 {
 	color: black;
@@ -120,7 +120,7 @@ Sbagliato
 }
 ```
 
-Corretto:
+Good:
 ```css
 .class_1, .class_2 {
 	color: black;
@@ -140,7 +140,7 @@ Quindi, in questo caso, andremmo a mischiare la logica.
 
 * **Usare shorthand** a volte c'è bisogno di settare dei margini di versi per le quattro direzioni (top, right, bottom, left), in questo caso, anzichè creare 4 proprietà per ogni direzione, è bene usare gli shorthand che il CSS offre.
 
-Sbagliato:
+Bad:
 ```css
 .class {
 	margin-top: 2px;
@@ -150,14 +150,15 @@ Sbagliato:
 }
 ```
 
-Corretto:
+Good:
 ```css
 .class {
 	margin: 2px 10px 15px 20px;
 }
 ```
 
-* **Attributi in ordine alfabetico** quando all'interno di una classe CSS vengono dichiarati i diversi attributi, è bene mantenerli in ordine alfabetico, per evitare di creare confusione in chi dovrà poi leggere in futuro la classeSbagliato:
+* **Attributi in ordine alfabetico** quando all'interno di una classe CSS vengono dichiarati i diversi attributi, è bene mantenerli in ordine alfabetico, per evitare di creare confusione in chi dovrà poi leggere in futuro la classeBad:
+Bad
 ```css
 .class {
 	margin: 10px;
@@ -166,7 +167,7 @@ Corretto:
 }
 ```
 
-Corretto:
+Good:
 ```css
 .class {
 	border: 1px solid red;
@@ -193,7 +194,7 @@ Grazie a questo, eviteremo conflitti con la nomenclatura delle classi e di crear
 
 Bisogna fare attenzione a non creare classi BEM con nomencaltura troppo lunga. BEM non è collegato alla struttura del DOM e, le classi create, non dovrebbero contenere più di un '__' al loro interno.
 
-Scorretto
+Bad
 ```html
 <div class="card">
     <div class="card__header">
@@ -214,7 +215,7 @@ Scorretto
 </div>
 ```
 
-Corretto
+Good
 ```html
 <div class="card">
     <div class="card__header">

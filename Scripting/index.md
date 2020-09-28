@@ -37,12 +37,12 @@ example(param1, param2) {
 
 * **The variable name should be in camelCase**
 
-Wrong
+Bad
 ```js
 const variable_name = 0;
 ```
 
-Correct
+Good
 ```js
 const variableName = 0;
 ```
@@ -50,13 +50,13 @@ const variableName = 0;
 * **Const variables should be UPPERCASE**
 * **Give variable descriptive names** when creating a variable give it a descriptive name. This will help you and, if done right, no comments will be needed for that variable. For boolean variable use 'is' and 'has' prefix.
 
-Wrong
+Bad
 ```js
 // Checking if the element height is more than 100px
 if (height > 100) {...}
 ```
 
-Correct
+Good
 ```js
 const hasRequiredHeight = heightInPx > 100;
 if (hasRequiredHeight) {...}
@@ -68,7 +68,7 @@ if (hasRequiredHeight) {...}
 
 * **Avoid large number of function params** when creating a function, avoid passing too much params in input. If possible, use an object instead. This will make the code more readable and prevent from having to pass every function param value even if thery are not necessary.
 
-Wrong
+Bad
 ```js
 /**
  * As you can see, when arg4 is true we don't need arg1, arg2, arg3 to be passed because they are not used
@@ -82,7 +82,7 @@ function test(arg1, arg2, arg3, arg4) {
 test('', '', '', true);
 ```
 
-Correct
+Good
 ```js
 /**
  * As you can see, using an object we don't need to pass every single param.
@@ -98,7 +98,7 @@ test({ arg4: true });
 
 * **Use destructuring** thanks to object destructuring we can extract properties from an object and bind them to variables. The cool thing is that we can extract more then one prop at time
 
-Wrong
+Bad
 ```js
 const hero = {
   name: 'Batman',
@@ -112,7 +112,7 @@ name;     // => 'Batman',
 realName; // => 'Bruce Wayne'
 ```
 
-Correct
+Good
 ```js
 const hero = {
   name: 'Batman',
@@ -135,7 +135,7 @@ realName; // => 'Bruce Wayne'
 * **Utils file - helpers functions** create an utils.js file in which you can store functions used over the whole application. Stop copying/pasting the same code in different functions
 * **Don't overuse if/else** if a function has different possible outcome based on some value, prevent creating a list of if/else statement. Use switch instead, the code will be clearer.
 
-Wrong
+Bad
 ```js
 function test(value) {
     const text = 'Hello';
@@ -153,7 +153,7 @@ function test(value) {
 }
 ```
 
-Correct
+Good
 ```js
 function test(value) {
     let text = 'Hello';
@@ -177,7 +177,7 @@ function test(value) {
 ```
 * **Prefer string template over string concatenation** the code will be more readable and easy to understand and easy to format. You can also use tagged template literals to make some transformation over the string
 
-Wrong
+Bad
 ```js
 const string1 = 'Hello';
 const string2 = 'World';
@@ -186,7 +186,7 @@ const string3 = '!';
 const string4 = string1 + ' ' + string2 + ' ' + string3;
 ```
 
-Correct
+Good
 ```js
 const string1 = 'Hello';
 const string2 = 'World';
