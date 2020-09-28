@@ -221,3 +221,5 @@ let level = a === 1 ? true : alse;
 
 let greetings = level && 'Hello World!';
 ```
+
+* **Don't use console.log** don't push code with console.log inside. Remove all of them and use the browser console debugging function instead
