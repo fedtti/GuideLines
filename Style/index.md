@@ -17,8 +17,6 @@ Indubbiamente utilizzare l'SCSS porta dei notevoli vantaggi:
 
 * possibilità di compiere piccole operazioni matematiche utili per calcolare dinamicamente alcune dimensioni;
 
-  
-
 ##### Folder structure
 
 Di seguito alcune regole su come strutturare la cartella degli stili all'interno di un progetto.
@@ -178,3 +176,65 @@ Corretto:
 ```
 
 * **Use rem, em instead of px**
+
+##### BEM
+E' una metodologia di nomenclatura degli elementi css che aiuta a creare componenti riutilizzabili all'interno dell'applicazione.
+
+BEM (Block - Element - Modifiers) si basa sulla suddivisione in blocchi degli elementi della pagina.
+Prendiamo per esempio un componente che serve a rappresentare una card, questi avrà una classe css chiamata *__.card__*.
+
+Questa card al suo interno avrà un'immagine, una descrizione e dei button. Questi elementi avranno, corrispettivamente, le seguenti classi css: *__.card\_\_image__*, *__.card\_\_description__*, *__.card\_\_button__*.
+
+A loro volta, i bottoni saranno di diverso tipo, uno per confermare e uno per annullare. Le loro classi css saranno quindi:
+*__.card\_\_button--is-success__*, *__.card\_\_button--is-cancel__*
+
+Come si può notare, quindi, con la metodologia BEM abbiamo identificato i vari elementi della pagina dividendoli in BLOCK, ELEMENTS E MODIFIERS.
+Grazie a questo, eviteremo conflitti con la nomenclatura delle classi e di creare nomi ambigui e poco chiari.
+
+Bisogna fare attenzione a non creare classi BEM con nomencaltura troppo lunga. BEM non è collegato alla struttura del DOM e, le classi create, non dovrebbero contenere più di un '__' al loro interno.
+
+Scorretto
+```html
+<div class="card">
+    <div class="card__header">
+        
+        <h2 class="card__header__title">Title text here</h2>
+    
+    </div>
+    <div class="card__body">
+        
+        <img class="card__body__img" src="some-img.png">
+        
+        <p class="card__body__text">Lorem ipsum dolor sit amet, consectetur</p>
+        <p class="card__body__text">Adipiscing elit.
+            <a href="/somelink.html" class="card__body__text__link">Pellentesque amet</a>
+        </p>
+
+    </div>
+</div>
+```
+
+Corretto
+```html
+<div class="card">
+    <div class="card__header">
+        
+        <h2 class="card__title">Title text here</h2>
+    
+    </div>
+    <div class="card__body">
+        
+        <img class="card__img" src="some-img.png">
+        
+        <p class="card__text">Lorem ipsum dolor sit amet, consectetur</p>
+        <p class="card__text">Adipiscing elit.
+            <a href="/somelink.html" class="card__link">Pellentesque amet</a>
+        </p>
+
+    </div>
+</div>
+```
+
+Se ci sembra necessario avere diversi '__' all'interno del nome della classe, allora dovremmo rivalutare come stiamo strutturando e creando il nostro componente.
+
+E anche questo è un altro vantaggio di BEM, spinge a rivalutare la struttura del componente creandone di semplici e non troppo elaborati.
