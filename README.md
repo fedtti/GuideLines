@@ -2,6 +2,6 @@
 
 * [CSS/SCSS](https://github.com/MarcoCilona/GuideLines/blob/master/Style/index.md)
 * [HTML/PUG](https://github.com/MarcoCilona/GuideLines/blob/master/Template/index.md)
-* JS/TYPESCRIPT;
-* VUE;
+* [JS](https://github.com/MarcoCilona/GuideLines/blob/master/Scripting/index.md)
+* [VUE](https://github.com/MarcoCilona/GuideLines/blob/master/Vue/index.md);
 * FOLDER STRUCTURE

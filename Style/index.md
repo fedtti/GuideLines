@@ -177,6 +177,20 @@ Good:
 ```
 
 * **Use rem, em instead of px**
+* **Use the most specific attribute**
+Bad
+```css
+.class {
+    background: red;
+}
+```
+
+Good
+```css
+.class {
+    background-color: red;
+}
+```
 
 ##### BEM
 E' una metodologia di nomenclatura degli elementi css che aiuta a creare componenti riutilizzabili all'interno dell'applicazione.
