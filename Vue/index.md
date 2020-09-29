@@ -202,5 +202,166 @@ router/
     |- administration.js
     |- dashboard.js
 
-###### Api - axios
-Use axios to handle api calls.
+
+##### Axios
+Use VueAxios to handle api calls.
+The best way to manage axios is to create an __api.service.js__ where the axios instance is created and initialized as an object with all the main HTTP methods.
+
+The axios instance will look like this:
+```js
+const ApiService = {
+  init() {
+    Vue.use(VueAxios, axios);
+    Vue.axios.defaults.baseURL = API_URL;
+  },
+
+  get(resource, slug = "") {
+    return Vue.axios.get(`${resource}/${slug}`).catch(error => {
+      throw new Error(`[RWV] ApiService ${error}`);
+    });
+  },
+
+  post(resource, params) {
+    return Vue.axios.post(`${resource}`, params);
+  },
+
+  put(resource, params) {
+    return Vue.axios.put(`${resource}`, params);
+  },
+
+  delete(resource) {
+    return Vue.axios.delete(resource).catch(error => {
+      throw new Error(`[RWV] ApiService ${error}`);
+    });
+  }
+};
+```
+
+As the application could be very big, having lots of api call, we can use __api.service.js__ as an entry point in which initialize the VueAxios instance with its main methods.
+The other api call will be stored in some specific files, based on their context.
+For example, all the api with enpoint 'user', will be stored in a user.service.js file. This file will be later imported in the __api.service.js__ and made available in the application with an export statement.
+
+Ex.:
+```js
+const ApiService = {
+  init() {
+    Vue.use(VueAxios, axios);
+    Vue.axios.defaults.baseURL = API_URL;
+  },
+
+  get(resource, slug = "") {
+    return Vue.axios.get(`${resource}/${slug}`).catch(error => {
+      throw new Error(`[RWV] ApiService ${error}`);
+    });
+  },
+
+  post(resource, params) {
+    return Vue.axios.post(`${resource}`, params);
+  },
+
+  put(resource, params) {
+    return Vue.axios.put(`${resource}`, params);
+  },
+
+  delete(resource) {
+    return Vue.axios.delete(resource).catch(error => {
+      throw new Error(`[RWV] ApiService ${error}`);
+    });
+  }
+};
+
+export ApiService; // This is needed to be able to access ApiService instance from the other submodules of the api.service
+export { UserService } from "./api-resources/user.service"; // 
+```
+
+A generic service file will be structured like this:
+```js
+import ApiService from "@/common/api.service";
+
+const RES_USER = "user";
+
+export const UserService = {
+  getUser(payload) {
+    return ApiService.get(`${RES_USER}`);
+  }
+};
+```
+
+###### Folder structure
+common/
+|
+|- config.js
+|- api.service.js
+|- api-resources/
+    |- user.service.js
+    |- project.service.js
+    |- ...
+
+###### Best Practices
+* **File name** every service file will be called with the following pattern: __domain__ service.js.
+* **Endpoint storage** in every service file save the used api endpoints in some const variable.
+Bad
+```js
+import ApiService from "@/common/api.service";
+
+export const UserApi = {
+  getUser(payload) {
+    return ApiService.get('user');
+  }
+};
+```
+
+Good
+```js
+import ApiService from "@/common/api.service";
+
+const RES_USER = "user";
+
+export const UserService = {
+  getUser(payload) {
+    return ApiService.get(RES_USER);
+  }
+};
+```
+* **Create descriptive name** when creating a method making an api call, use a descriptive name to tell what kind of operation will be done. ex.: getUser, saveUser, updateUser, ecc...
+
+##### Project structure
+A Vue project src folder should be structured as follows
+
+src/
+|
+|- assets/
+|- common/
+    |- api.service.js
+    |- utils.js
+    |- api-resources/
+        |- user.service.js
+        |- ...
+|- components/
+    |- base/
+    index.js
+|- locale/
+|- mixins/
+|- router/
+    |- index.js
+    |- admin.js
+    |- ...
+|- store/
+    |- index.js
+    |- modules/
+        |- user.module.js
+|- styles/
+|- views/
+|- App.vue
+|- main.js
+
+Description
+* **assets**: store images, svg and media files;
+* **common**: store api service (VueAxios), utils functions (helper functions);
+* **components**: stores the components used inside the application. The base components should be separated from the others, saved in a subfodler called 'base'. If the components grows in numbers, think about split them by their domain and store them in subfolders. The __index.js__ file is used to export all the components created;
+* **locale** stores the VueI18n translations;
+* **mixins** if the applications make use of some mixins, store them inside this folder;
+* **router** stores the applications routing system. The index.js file will be the entry point, importing all the routes modules;
+* **store** put all the information about the Vuex store inside this folder;
+* **styles** stores the application styles (css or scss);
+* **views** when a component is used to make a page layout, its considered a view component. Commonly those components are the one used by VueRouter. When this folder grows in size, think about splitting the views into subfolders based on their context. ex.: all the views related to the admin page will be stored inside a __admin__ folder;
