@@ -1,49 +1,41 @@
 ## CSS/SCSS
 
-Partiamo con una piccola introduzione su cosa siano il CSS e l'SCSS.
+We'll start with a short intro baout CSS and SCSS.
 
-Il **CSS** è un linguaggio utilizzato dagli sviluppatori web per aggiungere dello stile alle pagine. E' uno dei tre pilastri dello sviluppo web, insieme a JavaScript e HTML.
+**CSS** is a language used to add style to web pages. It's one of the core of web development along with JavaScript and HTML.
 
-L' **SCSS** è un linguaggio preprocessato che viene poi compilato in un file CSS. Nasce dal SASS e permette di aggungere delle funzionalità speciali che il semplice CSS non consente di avere. Alcune di questo possono ad esempio essere: utilizzo di variabili, nestingn delle classi e altre ancora.
+**SCSS** is a preprocessed language that will be compiled into a CSS file. It allows to add special functionalities to a simple CSS file. Some example are: variables, class nesting.
 
-Quale dei due utilizzare quando si avvia un progetto frontend?
-Indubbiamente utilizzare l'SCSS porta dei notevoli vantaggi:
+##### Advantages of SCSS
+* the code is more readbale, also thanks to its nesting capabilities. The lines of code will be reduced;
 
-* il codice diventa più leggibile poichè, grazie al nesting, si possono scrivere molte meno righe di codice il che lo rende più facile da mantenere nel tempo;
+* Inline comments help developers understanding the code;
 
-* Nesting e inline comments che aiutano a tenere traccia del lavoro che si sta facendo anche a sviluppatori che dovranno mettere mano al codice in futuro;
-
-* possibilità di utilizzare variabili e di creare funzioni;
-
-* possibilità di compiere piccole operazioni matematiche utili per calcolare dinamicamente alcune dimensioni;
+* usage of variables and functions;
 
 ##### Folder structure
 
-Di seguito alcune regole su come strutturare la cartella degli stili all'interno di un progetto.
+Here some examples and suggestion on how to make a good folder structure when it comes to styles.
 
-Primo passo è che i nostri stili siano tutti contenuti all'interno di una cartella chiamata *__styles__*.
-Altra regola da seguire è quella di non avere tutto lo stile in un unico file SCSS ma suddividere i vari stili per i diversi componenti creati. 
+The main fodler will be called *__styles__* and contains all the subfolders and files.
+One of the core concepts is to avoid aving all the styles inside a single file but to split it into multiple files, one for each component created. 
 
-Ma come organizzare tutti i file scss creati?
+The folder structure is based on the *__7-1__* rule (7 folders, 1 file).
+The only file contained in the *__styles__* folder is *__main.scss__* and its only purpose is to import all the styles file created.
 
-La regola base per l'organizzazione della cartella di stili per progetti anche di grandi dimensioni viene chiamata regola *__7-1__* (7 cartelle e 1 file).
-Questa definisce che, all'interno della cartella styles, vi siano 7 sottocartelle e un unico file principale.
-Questo unico file sarà chiamato *__main.scss__* e si occuperà di contenere i vari import degli altri file scss contenuti nelle 7 cartelle.
+The 7 subfodlers are the follwing:
 
-Le 7 sottocartelle serviranno per suddividere tutti gli altri file SCSS creati, e saranno le seguenti:
+* **utilities**: contains all the SCSS file used to help the developers. Like variables files, functions, mixins;
+* **base**: contains the SCSS code that will be used in the whole application, like rest files, common and generic CSS classes (ex.: margin classes, font-size classess and so on);
+ * **components**: contains all the component related styles. When it comes to large scale application, this folder could be splitted into subfodlers containg, for example, base components, or domain related components;
+* **layout**: contains all the styles related to layout components. With the increasingly usage of frontend frameworks, this folder could be omitted;
+* **pages**: styles related to the applications pages;
+* **themes**: not very used, this folder contains all the styles that modify the application with some specific theme;
+* **vendors**: all codes belonging to third part libraries should be store inside this folder. If, for some reason, we need to overwrite the style of some components, create a subfolder with the name *__vendors-extensions__* and save the styles inside it;
 
-* **utilities**: conterrà tutti i file SCSS di supporto allo sviluppo, come ad esempio file contenenti le variabili, le funzioni, i mixin. Tutti i file contenuti in questa cartella saranno solo utilizzati come 'helpers' e non produrranno alcun outpu css una volta compilati;
-* **base**: contiene tutto quel codice SCSS che verrà poi riutilizzato in tutta l'applicazione. Ad esempio, all'interno possiamo trovare reset files (file che servono per ripristinare lo stile di alcuni elementi che altrimenti hanno uno stile di default del browser), file con classi SCSS generiche (es.: classi per la gestione del padding, del margin, display, ecc...), e anche file contenenti informazioni sulla formattazione del testo;
- * **components**: contiene tutti gli stili riferiti ai componenti dell'applicazione, come ad esempio buttons, sliders, etc... Molto probabilmente il progetto conterrà molti componenti, più l'applicazione crescerà più la cartella components verrà suddivisa in sottocartelle in modo da riprodurre la struttura delle cartelle dei componenti.
-Ad esempio, avremo una sottocartella *__base__* che conterrà componenti base riutilizzati in giro per l'applicazione.
-* **layout**: contiente gli stili che definiscono il layout dell'applicazione. Come ad esempio header, footer, barre di navigazione ed, eventualmente, il grid system. Considerando come ormai ogni progetto FE si basa su alcuni framework (Vue.js, React, ecc...) la creazione della cartella layout potrebbe venir deprecata e il suo contenuto spostato nella cartella 'Components';
-* **pages**: stili riferiti alle pagine dell'applicazione o, se si utilizza un frontend con una gestione di rotte, stili riferiti alle varie rotte definite. Ad esempio, potremmo avere uno stile specifico per la pagina di Home;
-* **themes**: usata poco frequentemente, questa cartella dovrebbe contenere tutti gli stili che definiscono particolari temi per l'applicazione;
-* **vendors**: contiente tutto il codice di librerie terze (Bootstrap, jQuery, ecc...). In questa cartella possono essere contenuti anche file che vanno a sovrascrivere gli stili di alcuni componenti esterni. E' buona pratica, in questo caso, creare una sotto cartella *__vendors-extensions__* in cui salvare i file che vanno a sovrascrivere eventuali stili esterni;
+All the styles file name that are not the main.scss should start with an _ symbol.
 
-Tutti i file contenuti nelle cartelle dovranno seguire una convenzione nella loro nomenclatura, il loro nome dovrà iniziare con '_'. Ad esempio, _button.scss.
-
-Ecco un esempio di come strutturare le cartelle:
+Here an example of a folder structure:
 
 styles/
 |
@@ -80,18 +72,17 @@ styles/
 |   |– _bootstrap.scss
 |   |– _jquery-ui.scss
 |
-`– main.scss
+|– main.scss
 
 
+N.B.: The 7-1 rule can be applied as needed, don't create a themes folder if not necessary.
 
-N.B.: La regola del 7-1 può essere applicata anche solo in parte. Se non abbiamo bisogno di alcune cartelle (es.: themes) eviteremo di crearla.
-
-Una piccola modifica a questa struttura sta nel creare altri file a livello di ogni singola cartella dove importare tutti gli stili contenuti. Ad esempio, la cartella layout potrà avere un file _layout.scss che farà da 'main' per il layout. Poi nel file, main.scss importeremo _layout.scss.
-
+We can make a little change on this structure by adding, for every folder, an entry point file which will import all the files of that folder.
+For example, the layout folder, could contain a __layout.scss which will import all the other scss file contained in the layout folder.
+This newly created file will be then, the one imported in the main.scss
 
 ##### Best practices
-* **Mantenere ogni stile su una sua linea** Quando si dichiara una classe in un file css e questa contiene diversi attirbuti, predisporre una nuova riga per ogni attributo.
-
+* **Put every attribute on a single line** 
 Bad:
 ```css
 .class { display: none; position: relative; }
@@ -104,10 +95,8 @@ Good:
 	position: relative;
 }
 ```
-
-* **Usare un reset** se si inizia un progetto da zero e non si stanno utilizzando librerie di UI, è buona norma avere un file di reset per eliminare tutte le incosistenze dei vari browser. Ci son diversi file di reset che si possono trovare online.
-
-* **Combinare gli elementi** se alcune proprietà sono comuni a più elementi è meglio raggrupparli anzichè ripetere il codice;
+* **Use reset files** when starting a project from scratch, its a good practice to have reset files to remove all the browser useless styles:
+* **Merge common style** if some classe uses the same styles, merge them;
 
 Bad
 ```css
@@ -126,20 +115,14 @@ Good:
 	color: black;
 }
 ```
+* **First HTML, then CSS** start by writing down the HTML and then add style to it;
+* **Utility classes** create and use utility classes if some style are widely used in the application, make the code as much reusable as possible;
+**Warning** don't overuse utility classes. Use them with wisdom.
+For example, if an element has a left float and we are using '.float-left' class maybe later we'll need to float it to the right. To do so we need to change the HTML of the element and update its css classes to be 'float-right'. That's wrong because we are changing HTML to update the style.
+Remember:
+*__HTML is for markup, CSS for style__*
 
-* **Prima l'HTML poi il CSS** quando si crea una pagina è meglio prima crearne la struttura completa e poi aggiungere lo stile, in questo modo si avrà una visone completa di ciò che è necessario;
-
-* **Usare classi di utility** può capitare che molti elementi a volte abbiano bisogno di uno stile comune. Ad esempio avere diversi elementi con un margine di 12px. In questo caso, la soluzione migliore sarebbe avere una classe di utils, margin-12 che setta il margine a 12px e che può essere riutilizzata da qualsiasi elemento essendo essa generica.
-
-**Warning** se abbiamo una classe che fa un float di un elemento a sinistra creeremo una classe 'float-left'. Se però, per ragioni di design, l'elemento dovrà avere invece un float a destra, dovremo andare a cambiare l'HTML per cambiare l'aspetto della pagina e questo non va bene.
-
-Ricordiamo:
-*__HTML è per il markup e il contenuto, CSS è per l'aspetto__*
-
-Quindi, in questo caso, andremmo a mischiare la logica.
-
-* **Usare shorthand** a volte c'è bisogno di settare dei margini di versi per le quattro direzioni (top, right, bottom, left), in questo caso, anzichè creare 4 proprietà per ogni direzione, è bene usare gli shorthand che il CSS offre.
-
+* **Use shorthand** 
 Bad:
 ```css
 .class {
@@ -156,8 +139,7 @@ Good:
 	margin: 2px 10px 15px 20px;
 }
 ```
-
-* **Attributi in ordine alfabetico** quando all'interno di una classe CSS vengono dichiarati i diversi attributi, è bene mantenerli in ordine alfabetico, per evitare di creare confusione in chi dovrà poi leggere in futuro la classeBad:
+* **Keep alphabetical order** 
 Bad
 ```css
 .class {
@@ -193,21 +175,26 @@ Good
 ```
 
 ##### BEM
-E' una metodologia di nomenclatura degli elementi css che aiuta a creare componenti riutilizzabili all'interno dell'applicazione.
+It's a metodology to give css classes descriptive names. Forces the developer to make component as little and reusable as possible.
 
-BEM (Block - Element - Modifiers) si basa sulla suddivisione in blocchi degli elementi della pagina.
-Prendiamo per esempio un componente che serve a rappresentare una card, questi avrà una classe css chiamata *__.card__*.
+BEM (Block - Element - Modifiers) is based on the concept of split the elements of the page into blocks.
 
-Questa card al suo interno avrà un'immagine, una descrizione e dei button. Questi elementi avranno, corrispettivamente, le seguenti classi css: *__.card\_\_image__*, *__.card\_\_description__*, *__.card\_\_button__*.
+Here an example of a card component:
+The main element will have a *__.card__** css class.
+The card contains an image, a description and two actions buttons.
+The inner elements will then, have the following css classes:
+* *__.card\_\_image__*;
+* *__.card\_\_description__*;
+* *__.card\_\_button__*
 
-A loro volta, i bottoni saranno di diverso tipo, uno per confermare e uno per annullare. Le loro classi css saranno quindi:
-*__.card\_\_button--is-success__*, *__.card\_\_button--is-cancel__*
+The button, moreover, will be divided into confirm and cancel button, so their css classe are: *__.card\_\_button--is-success__*, *__.card\_\_button--is-cancel__*
 
-Come si può notare, quindi, con la metodologia BEM abbiamo identificato i vari elementi della pagina dividendoli in BLOCK, ELEMENTS E MODIFIERS.
-Grazie a questo, eviteremo conflitti con la nomenclatura delle classi e di creare nomi ambigui e poco chiari.
+As you can see, the card components has been split into, BLOCK (card), elements (image, description, button) and modifiers (--is-success, --is-cancel).
 
-Bisogna fare attenzione a non creare classi BEM con nomencaltura troppo lunga. BEM non è collegato alla struttura del DOM e, le classi create, non dovrebbero contenere più di un '__' al loro interno.
+**WARNING**
+Watch out when creating css names, sometimes you will end up having very long names. Remember, BEM is not strictly related to the DOM so try keeping the names with at most a single '__' pattern in it.
 
+The following example shows, how to use BEM without relating it to the DOM structure:
 Bad
 ```html
 <div class="card">
@@ -249,7 +236,3 @@ Good
     </div>
 </div>
 ```
-
-Se ci sembra necessario avere diversi '__' all'interno del nome della classe, allora dovremmo rivalutare come stiamo strutturando e creando il nostro componente.
-
-E anche questo è un altro vantaggio di BEM, spinge a rivalutare la struttura del componente creandone di semplici e non troppo elaborati.
