@@ -217,7 +217,7 @@ if (level) greetings = 'Hello World!'
 
 Good
 ```js
-let level = a === 1 ? true : alse;
+let level = a === 1;
 
 let greetings = level && 'Hello World!';
 ```
