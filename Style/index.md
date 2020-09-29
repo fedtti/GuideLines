@@ -1,13 +1,13 @@
 ## CSS/SCSS
 
-We'll start with a short intro baout CSS and SCSS.
+We'll start with a short intro about CSS and SCSS.
 
-**CSS** is a language used to add style to web pages. It's one of the core of web development along with JavaScript and HTML.
+**CSS** is a language used to add style to web pages. It's one of the core 'values' of web development along with JavaScript and HTML.
 
 **SCSS** is a preprocessed language that will be compiled into a CSS file. It allows to add special functionalities to a simple CSS file. Some example are: variables, class nesting.
 
 ##### Advantages of SCSS
-* the code is more readbale, also thanks to its nesting capabilities. The lines of code will be reduced;
+* the code is more readable, also thanks to its nesting capabilities. The lines of code will be reduced;
 
 * Inline comments help developers understanding the code;
 
@@ -27,7 +27,7 @@ The 7 subfodlers are the follwing:
 
 * **utilities**: contains all the SCSS file used to help the developers. Like variables files, functions, mixins;
 * **base**: contains the SCSS code that will be used in the whole application, like rest files, common and generic CSS classes (ex.: margin classes, font-size classess and so on);
- * **components**: contains all the component related styles. When it comes to large scale application, this folder could be splitted into subfodlers containg, for example, base components, or domain related components;
+* **components**: contains all the component related styles. When it comes to large scale application, this folder could be splitted into subfodlers containing, for example, base components, or domain related components;
 * **layout**: contains all the styles related to layout components. With the increasingly usage of frontend frameworks, this folder could be omitted;
 * **pages**: styles related to the applications pages;
 * **themes**: not very used, this folder contains all the styles that modify the application with some specific theme;
@@ -75,7 +75,7 @@ styles/
 |– main.scss
 
 
-N.B.: The 7-1 rule can be applied as needed, don't create a themes folder if not necessary.
+N.B.: The 7-1 rule can be applied as needed, for example don't create a themes folder if not necessary.
 
 We can make a little change on this structure by adding, for every folder, an entry point file which will import all the files of that folder.
 For example, the layout folder, could contain a __layout.scss which will import all the other scss file contained in the layout folder.
@@ -96,7 +96,7 @@ Good:
 }
 ```
 * **Use reset files** when starting a project from scratch, its a good practice to have reset files to remove all the browser useless styles:
-* **Merge common style** if some classe uses the same styles, merge them;
+* **Merge common style** if some classes uses the same styles, merge them;
 
 Bad
 ```css
@@ -187,7 +187,7 @@ The inner elements will then, have the following css classes:
 * *__.card\_\_description__*;
 * *__.card\_\_button__*
 
-The button, moreover, will be divided into confirm and cancel button, so their css classe are: *__.card\_\_button--is-success__*, *__.card\_\_button--is-cancel__*
+The buttons, moreover, will be divided into confirm and cancel button, so their css classe are: *__.card\_\_button--is-success__*, *__.card\_\_button--is-cancel__*
 
 As you can see, the card components has been split into, BLOCK (card), elements (image, description, button) and modifiers (--is-success, --is-cancel).
 
