@@ -1,2 +1,0 @@
-###### Missing
-* VUE FOLDER STRUCUTRE EXAMPLES;
